@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { Container, Row, Col, Button, Spinner, Alert } from 'react-bootstrap'
 import { getProductById, deleteProduct } from '../services/api'
+import DeleteConfirmModal from '../components/DeleteConfirmModal'
 
 function ProductDetails() {
   const { id } = useParams()
@@ -10,6 +11,7 @@ function ProductDetails() {
   const [product, setProduct] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -27,17 +29,23 @@ function ProductDetails() {
     fetchProduct()
   }, [id])
 
+  const handleCloseModal = () => {
+    setShowModal(false)
+  }
+
+  const handleShowModal = () => {
+    setShowModal(true)
+  }
+
   const handleDelete = async () => {
-    const confirmDelete = window.confirm('Are you sure you want to delete this product?')
-
-    if (!confirmDelete) return
-
     try {
       await deleteProduct(id)
+      setShowModal(false)
       alert('Product deleted successfully! FakeStoreAPI is a mock API, so changes will not persist.')
       navigate('/products')
     } catch (err) {
       console.error(err)
+      setShowModal(false)
       alert('Failed to delete product.')
     }
   }
@@ -84,12 +92,18 @@ function ProductDetails() {
               Edit Product
             </Button>
 
-            <Button variant="danger" onClick={handleDelete}>
+            <Button variant="danger" onClick={handleShowModal}>
               Delete Product
             </Button>
           </div>
         </Col>
       </Row>
+
+      <DeleteConfirmModal
+        show={showModal}
+        handleClose={handleCloseModal}
+        handleDelete={handleDelete}
+      />
     </Container>
   )
 }
