@@ -1,16 +1,72 @@
-# React + Vite
+# 🛒 FakeStore React App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based e-commerce application implementing full CRUD functionality using FakeStoreAPI.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Project Overview
 
-## React Compiler
+This project is a single-page e-commerce application built with React.  
+It allows users to view products, see detailed information, and perform CRUD operations (Create, Read, Update, Delete).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🔹 Product Listing
+- Fetch all products from FakeStoreAPI
+- Display products using reusable card components
+
+### 🔹 Product Details
+- Dynamic routing using `useParams`
+- Displays detailed product information
+
+### 🔹 Add Product
+- Controlled form inputs
+- Sends POST request to API
+
+### 🔹 Edit Product
+- Pre-filled form with existing data
+- Updates product using PUT request
+
+### 🔹 Delete Product
+- Confirmation prompt before deletion
+- Sends DELETE request
+- Redirects back to product list
+
+---
+
+## 🛠 Tech Stack
+
+- **React**
+- **React Router**
+- **Axios**
+- **React Bootstrap**
+- **FakeStoreAPI**
+
+---
+
+## 📂 Project Structure
+src
+├─ components
+│ ├─ AppNavbar.jsx
+│ ├─ ProductCard.jsx
+│
+├─ pages
+│ ├─ Home.jsx
+│ ├─ Products.jsx
+│ ├─ ProductDetails.jsx
+│ ├─ AddProduct.jsx
+│ ├─ EditProduct.jsx
+│
+├─ services
+│ └─ api.js
+
+
+---
+
+## ⚙️ Installation & Run
+
+```bash
+npm install
+npm run dev
